@@ -17,6 +17,7 @@ jobs:
       - name: Linting Done
         run: echo "Completed Linting ..."
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -30,6 +31,7 @@ jobs:
       - name: Run tests
         run: npm test
   deploy:
+    needs: [lint,test]
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
